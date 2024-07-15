@@ -25,8 +25,8 @@ class wxLib
         $prefix = self::$config[$app];
 
         return [
-            'app_id' => env($prefix.'_APP_ID'),
-            'app_secret' => env($prefix.'_APP_SECRET'),
+            'app_id'     => env($prefix . '_APP_ID'),
+            'app_secret' => env($prefix . '_APP_SECRET'),
         ];
     }
 
@@ -35,18 +35,18 @@ class wxLib
      */
     public static function setApp($app): void
     {
-        $conf = self::getConfig($app);
-        self::$appid = $conf['app_id'];
+        $conf         = self::getConfig($app);
+        self::$appid  = $conf['app_id'];
         self::$secret = $conf['app_secret'];
     }
 
     public static function code2session($code)
     {
-        $url = 'https://api.weixin.qq.com/sns/jscode2session';
+        $url   = 'https://api.weixin.qq.com/sns/jscode2session';
         $param = [
-            'appid' => self::$appid,
-            'secret' => self::$secret,
-            'js_code' => $code,
+            'appid'      => self::$appid,
+            'secret'     => self::$secret,
+            'js_code'    => $code,
             'grant_type' => 'authorization_code',
         ];
 
@@ -62,9 +62,9 @@ class wxLib
         $url = 'https://api.weixin.qq.com/cgi-bin/stable_token';
 
         $body = [
-            'appid' => self::$appid,
-            'secret' => self::$secret,
-            'grant_type' => 'client_credential',
+            'appid'         => self::$appid,
+            'secret'        => self::$secret,
+            'grant_type'    => 'client_credential',
             'force_refresh' => $force,
         ];
         $data = Http::post($url, $body);

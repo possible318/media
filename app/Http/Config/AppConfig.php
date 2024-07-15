@@ -16,8 +16,8 @@ class AppConfig
         $prefix = self::$config[$app];
 
         return [
-            'app_id' => env($prefix.'_APP_ID'),
-            'app_secret' => env($prefix.'_APP_SECRET'),
+            'app_id'     => env($prefix . '_APP_ID'),
+            'app_secret' => env($prefix . '_APP_SECRET'),
         ];
     }
 }

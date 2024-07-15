@@ -30,12 +30,13 @@ abstract class Controller
      */
     public function error($code, $message = null)
     {
-        if (! $message) {
+        if (!$message)
+        {
             app()->setLocale('zh-cn');
             // $message = trans()->get("ErrorMsg." . $code);
         }
 
-        $state = substr($code, 0, 3);
+        $state  = substr($code, 0, 3);
         $result = ['errCode' => $code, 'message' => $message];
 
         return response()->make($result, $state);
@@ -45,11 +46,12 @@ abstract class Controller
     {
         $result = [
             'code' => 0,
-            'msg' => 'success',
+            'msg'  => 'success',
             'data' => $data,
         ];
-        if ($maxAge > 0) {
-            return response()->json($result)->header('Cache-Control', 'public,max-age='.$maxAge);
+        if ($maxAge > 0)
+        {
+            return response()->json($result)->header('Cache-Control', 'public,max-age=' . $maxAge);
         }
 
         return response()->json($result);

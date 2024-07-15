@@ -1,26 +1,27 @@
 <?php
 
-namespace App\Http\Servers;
+namespace App\Http\Logic;
 
 use App\Lib\wxLib;
 use Illuminate\Support\Facades\Cache;
 
-class WechatServer
+class WechatLogic
 {
-    public static function getAccessToken($wxapp)
+    public static function getAccessToken($wxApp)
     {
-        $key = 'wx_acc_token:'.$wxapp;
+        $key      = 'wx_acc_token:' . $wxApp;
         $tokenStr = Cache::get($key);
-        if ($tokenStr) {
+        if ($tokenStr)
+        {
             return json_decode($tokenStr, true);
         }
 
         return false;
     }
 
-    public static function setAccessToken($wxapp, $tokenAry)
+    public static function setAccessToken($wxApp, $tokenAry): bool
     {
-        $key = 'wx_acc_token:'.$wxapp;
+        $key = 'wx_acc_token:' . $wxApp;
         // $expire   = $tokenAry['expires_in'];
         $tokenStr = json_encode($tokenAry);
 
@@ -36,8 +37,8 @@ class WechatServer
         $res = wxLib::code2session($code);
 
         return [
-            'openid' => $res['openid'] ?? '',
-            'unionid' => $res['unionid'] ?? '',
+            'openid'      => $res['openid'] ?? '',
+            'unionid'     => $res['unionid'] ?? '',
             'session_key' => $res['session_key'] ?? '',
         ];
     }

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Servers\WechatServer;
+use App\Http\Logic\WechatLogic;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class WechatController extends Controller
 {
-    public function code2session(Request $request): \Illuminate\Http\JsonResponse
+    public function code2session(Request $request): JsonResponse
     {
         $appId = $request->get('appId', 10001);
-        $code = $request->get('code');
+        $code  = $request->get('code');
 
-        $data = WechatServer::getOpenIdByWx($code, $appId);
+        $data = WechatLogic::getOpenIdByWx($code, $appId);
 
         return $this->success($data);
     }
