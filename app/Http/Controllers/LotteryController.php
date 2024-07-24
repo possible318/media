@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class LotteryController extends Controller
 {
 
+    public function index(Request $request)
+    {
+        return view('lottery');
+    }
+
+
     public function config(Request $request)
     {
         $token = $request->session()->token();
