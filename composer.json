@@ -11,7 +11,8 @@
         "php": "^8.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "qiniu/php-sdk": "^7.12"
+        "qiniu/php-sdk": "^7.12",
+        "ext-redis": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -24,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [sss
+            "helper/helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
