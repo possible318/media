@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Welcome</title>
     <style>
         body {
             font-family: 'Kosugi Maru', sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -19,7 +20,7 @@
         .welcome-container {
             text-align: center;
             animation: fadeIn 2s ease-in-out;
-
+            margin-bottom: 20px;
         }
 
         h1, p {
@@ -55,13 +56,59 @@
                 opacity: 1;
             }
         }
+
+        /* Card module styling */
+        .cards-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card-container {
+            width: 300px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .card-container h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .card-container p {
+            margin: 0;
+            font-size: 1em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-<div class="welcome-container">
-    <h1> Welcome to Our Site!</h1>
-    <p>Your journey starts here.</p>
+<div class="">
+    <div class="welcome-container">
+        <h1>Welcome to My Zone!</h1>
+        <p>Your journey starts here.</p>
+    </div>
+</div>
+
+
+<!-- Card Module -->
+<div class="cards-wrapper">
+    <div class="card-container">
+        <h2>手机流量卡</h2>
+        <p><a href="https://hk.usim.vip/h5#/?promoCode=vhfksgJk">前往免费办理流量卡</a></p>
+    </div>
+    <div class="card-container">
+        <h2>待定</h2>
+        <p>还没想好放什么.</p>
+    </div>
 </div>
 </body>
 </html>
