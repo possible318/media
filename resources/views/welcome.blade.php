@@ -106,6 +106,10 @@
         <p><a href="https://hk.usim.vip/h5#/?promoCode=vhfksgJk">前往免费办理流量卡</a></p>
     </div>
     <div class="card-container">
+        <h2>颜色</h2>
+        <p><a href="/color">偷的功能</a></p>
+    </div>
+    <div class="card-container">
         <h2>待定</h2>
         <p>还没想好放什么.</p>
     </div>
