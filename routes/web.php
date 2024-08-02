@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/color', function () {
+    return view('color');
+});
+
 Route::get('/photos', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);
 
 Route::get('/media/jxd', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);

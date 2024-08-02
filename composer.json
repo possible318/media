@@ -9,10 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-redis": "*",
         "laravel/framework": "^11.17",
         "laravel/tinker": "^2.9",
-        "qiniu/php-sdk": "^7.12",
-        "ext-redis": "*"
+        "qiniu/php-sdk": "^7.12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

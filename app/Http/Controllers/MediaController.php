@@ -28,4 +28,15 @@ class MediaController extends Controller
 
         return $this->success($list, 60);
     }
+
+    public function XnUpload(Request $request)
+    {
+        $id   = $request->get('id');
+        $data = $request->get('data');
+
+        MediaLogic::UploadXnMedia($id, $data);
+
+        return $this->success("ok");
+
+    }
 }

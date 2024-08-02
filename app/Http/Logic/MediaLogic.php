@@ -82,12 +82,14 @@ class MediaLogic
     }
 
     /**
-     * 保存媒体数据
-     *
-     * @return void
+     * 上传
      */
-    public static function saveXnMedia($id)
+    public static function UploadXnMedia($id, $data)
     {
-        // pass
+        // 上传图片
+        // 七牛云上传
     }
+
+
+
 }

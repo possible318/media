@@ -28,12 +28,12 @@
         }
 
         h1 {
-            color: #FF69B4; /* Soft pink */
+            color: #e3b4b8; /* Soft pink */
             font-size: 2.5em;
         }
 
         p {
-            color: #5A3A7A; /* Dark purple */
+            color: #ec2b24; /* Dark purple */
             font-size: 1em;
         }
 
