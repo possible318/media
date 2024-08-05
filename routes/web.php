@@ -14,6 +14,7 @@ Route::get('/photos', [\App\Http\Controllers\MediaController::class, 'JxdMedia']
 
 Route::get('/media/jxd', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);
 Route::get('/media/xn', [\App\Http\Controllers\MediaController::class, 'XnMedia']);
+Route::get('/media/xn/update', [\App\Http\Controllers\MediaController::class, 'XnUpload']);
 
 Route::get('/wechat/code2session', [App\Http\Controllers\WechatController::class, 'code2session']);
 

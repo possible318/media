@@ -4,6 +4,8 @@ namespace App\Http\Logic;
 
 use App\Models\MediaJxd;
 use App\Models\MediaXn;
+use Qiniu\Auth;
+use Qiniu\Storage\BucketManager;
 
 class MediaLogic
 {
@@ -86,10 +88,29 @@ class MediaLogic
      */
     public static function UploadXnMedia($id, $data)
     {
-        // 上传图片
-        // 七牛云上传
-    }
+        $accessKey = env("QINIU_ACCESS_KEY");
+        $secretKey = env("QINIU_SECRET_KEY");
 
+        $bucket = 'low-dog';
+        // 构建鉴权对象
+        $auth          = new Auth($accessKey, $secretKey);
+        $bucketManager = new BucketManager($auth);
+
+        $url = 'https://img.0x318.com/jxd/wb/0041jQI9gy1grw9wpqgbhj61o0280hdt02.jpg';
+
+        // 上传到七牛后保存的文件名
+        $fileName = md5($url);
+
+        // 空间路径
+        $key = 'xn/' . $fileName . '.jpg';
+        // 指定抓取的文件保存名称
+        [$ret, $err] = $bucketManager->fetch($url, $bucket, $key);
+        if ($err !== null)
+        {
+            return false;
+        }
+        return $key;
+    }
 
 
 }
