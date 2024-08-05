@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-    <link rel="stylesheet" href="{{URL::asset('layui/css/layui.css')}}" media="all">
+    <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">
 </head>
 
 <body>
@@ -27,10 +27,10 @@
 </html>
 
 <!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
-<script src="{{URL::asset('layui/layui.js')}}" charset="utf-8"></script>
+<script src="{{URL::asset('js/layui/layui.js')}}" charset="utf-8"></script>
 
 <script>
-    
+
     layui.use(function () {
         var upload = layui.upload;
         var layer = layui.layer;
