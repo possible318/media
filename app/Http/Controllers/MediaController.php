@@ -34,7 +34,7 @@ class MediaController extends Controller
      * @param  Request  $request
      * @return JsonResponse
      */
-    public function Upload(Request $request)
+    public function Upload(Request $request): JsonResponse
     {
 
         $file = $request->file('file');
