@@ -2,7 +2,6 @@
 <head>
     <title></title>
 
-    {{--    <link rel="stylesheet" href="{{URL::asset('css/bootstrap.css')}}" media="all">--}}
 
     <style>
         #big-cube {
@@ -48,7 +47,6 @@
 </html>
 
 <script src="{{URL::asset('js/jquery-3.7.1.min.js')}}" charset="utf-8"></script>
-{{--<script src="{{URL::asset('js/bootstrap.js')}}" charset="utf-8"></script>--}}
 <script>
     //预设奖品
     let setTime;

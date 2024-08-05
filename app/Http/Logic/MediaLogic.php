@@ -86,7 +86,7 @@ class MediaLogic
     /**
      * 上传
      */
-    public static function UploadXnMedia($id, $data)
+    public static function UploadXnMedia($data)
     {
         $accessKey = env("QINIU_ACCESS_KEY");
         $secretKey = env("QINIU_SECRET_KEY");

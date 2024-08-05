@@ -31,12 +31,18 @@ class MediaController extends Controller
 
     public function XnUpload(Request $request)
     {
-        $id   = $request->get('id');
-        $data = $request->get('data');
 
-        MediaLogic::UploadXnMedia($id, $data);
+        $file = $request->file('file');
 
-        return $this->success("ok");
+        $name      = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+
+        dd($name);
+
+
+        // MediaLogic::UploadXnMedia($data);
+
+        return $this->success($file);
 
     }
 }
