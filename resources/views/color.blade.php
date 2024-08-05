@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <title>颜色</title>
 
+    <style>
+        @font-face {
+            font-family: 'lixukexingshu1b969ad7dc1c3e5';
+            src: url('css/lixunkejingdianxingshu.eot');
+            src: url('css/lixunkejingdianxingshu.eot?#font-spider') format('embedded-opentype'),
+            url('css/lixunkejingdianxingshu.woff2') format('woff2'),
+                /* url('css/lixunkejingdianxingshu.woff') format('woff'),
+                 url('css/lixunkejingdianxingshu.ttf') format('truetype'), */
+            url('css/lixunkejingdianxingshu.svg') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
     <link href="/css/color.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -14,6 +27,10 @@
         <ul id="colors"></ul>
     </nav>
     <article id="data">
+        <h2>
+            <span id="name">色</span>
+            <span id="pinyin">YANSE</span>
+        </h2>
         <div id="color-value">
             <dl id="CMYKcolor">
                 <dt class="c">C</dt>
@@ -201,9 +218,9 @@
         });
 
         colorsArray.forEach(function (color, i) {
-            const colorLI = document.createElement('li'),
-                colorDIV = document.createElement('div'),
-                colorA = document.createElement('a');
+            const colorLI = document.createElement('li');
+            const colorDIV = document.createElement('div');
+            const colorA = document.createElement('a');
 
             // Style
             colorLI.style.top = Math.floor(i / 7) * 300 + 'px';
@@ -250,18 +267,6 @@
     window.onpopstate = function () {
         hashRenderColor();
     };
-
-    function updateTextAlign() {
-        var adArchor = document.querySelector('.ad-archor');
-        if (window.innerHeight < 1000) {
-            adArchor.style.textAlign = 'left';
-        } else {
-            adArchor.style.textAlign = 'center';
-        }
-    }
-
-    window.onload = updateTextAlign;
-    window.onresize = updateTextAlign;
 </script>
 </body>
 </html>
