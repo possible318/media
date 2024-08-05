@@ -29,17 +29,18 @@ class MediaController extends Controller
         return $this->success($list, 60);
     }
 
-    public function XnUpload(Request $request)
+    /**
+     *
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function Upload(Request $request)
     {
 
         $file = $request->file('file');
 
         $name      = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
-
-        dd($name);
-
-
 
         // MediaLogic::UploadXnMedia($data);
 

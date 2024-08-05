@@ -9,7 +9,7 @@ Route::get('/photos', [\App\Http\Controllers\MediaController::class, 'JxdMedia']
 
 
 Route::get('/media/up_page', function () { return view('upload'); }); // 上传页面
-Route::post('/media/upload', [\App\Http\Controllers\MediaController::class, 'XnUpload']); // 上传
+Route::post('/media/upload', [\App\Http\Controllers\MediaController::class, 'Upload']); // 上传
 
 // 尖尖
 Route::get('/media/jxd', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);
