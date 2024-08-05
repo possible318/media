@@ -12,7 +12,7 @@ Route::get('/media/jxd', [\App\Http\Controllers\MediaController::class, 'JxdMedi
 
 // 念
 Route::get('/media/xn', [\App\Http\Controllers\MediaController::class, 'XnMedia']);
-Route::get('/media/xn/upPage', function () { return view('upload'); }); // 上传页面
+Route::get('/media/xn/up_page', function () { return view('upload'); }); // 上传页面
 Route::any('/media/xn/upload', [\App\Http\Controllers\MediaController::class, 'XnUpload']); // 上传
 
 // 微信
