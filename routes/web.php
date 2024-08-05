@@ -20,7 +20,7 @@ Route::get('/wechat/code2session', [App\Http\Controllers\WechatController::class
 // 颜色
 Route::get('/color', function () { return view('color'); });
 
-// 使用中间件
+// 抽奖
 Route::get('/lottery', function () { return view('lottery'); });
 Route::get('/lottery/config', [App\Http\Controllers\LotteryController::class, 'config']);
 Route::post('/lottery/saveCfg', [App\Http\Controllers\LotteryController::class, 'saveCfg']);
