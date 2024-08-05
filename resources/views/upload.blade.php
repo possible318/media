@@ -39,7 +39,7 @@
         // 单图片上传
         var uploadInst = upload.render({
             elem: '#ID-upload-demo-btn',
-            url: '/media/xn/upload', // 实际使用时改成您自己的上传接口即可。
+            url: '/media/upload', // 实际使用时改成您自己的上传接口即可。
             before: function (obj) {
                 // 预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
