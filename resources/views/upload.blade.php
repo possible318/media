@@ -11,14 +11,12 @@
 
 <body>
 
-<div class="layui-input-block">
-    <div class="layui-input-inline">
-        <!-- 上传文件  -->
-        <form method="post" action="/media/upload" enctype="multipart/form-data">
-            @csrf
-            <input type="file" name="photo">
-            <input type="submit" value="提交">
-        </form>
+<div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
+    <i class="layui-icon layui-icon-upload"></i>
+    <div>点击上传，或将文件拖拽到此处</div>
+    <div class="layui-hide" id="ID-upload-demo-preview">
+        <hr>
+        <img src="" alt="上传成功后渲染" style="max-width: 100%">
     </div>
 </div>
 
@@ -31,12 +29,21 @@
 <script>
     layui.use(function () {
         var upload = layui.upload;
-        var layer = layui.layer;
-        var element = layui.element;
         var $ = layui.$;
-        // 单图片上传
-
-
+        // 渲染
+        upload.render({
+            elem: '#ID-upload-demo-drag',
+            url: '/media/upload', // 实际使用时改成您自己的上传接口即可。
+            accept: 'file',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            done: function (res) {
+                layer.msg('上传成功');
+                $('#ID-upload-demo-preview').removeClass('layui-hide')
+                    .find('img').attr('src', res.data.file);
+                console.log(res)
+            }
+        });
     });
-
 </script>

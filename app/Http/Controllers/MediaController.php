@@ -36,7 +36,7 @@ class MediaController extends Controller
      */
     public function Upload(Request $request): JsonResponse
     {
-        $file = $request->file('photo');
+        $file = $request->file('file');
         if (!$file->isValid())
         {
             return $this->error('上传失败');
@@ -48,6 +48,9 @@ class MediaController extends Controller
         $data = $file->getContent();
         $key  = MediaLogic::UploadMedia($path, $data);
 
-        return $this->success($key);
+        $url = env('OSS_URL') . '/' . $key;
+        return $this->success([
+            'file' => $url,
+        ]);
     }
 }
