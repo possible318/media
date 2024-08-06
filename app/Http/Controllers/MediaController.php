@@ -36,13 +36,13 @@ class MediaController extends Controller
      */
     public function Upload(Request $request): JsonResponse
     {
-
         $file = $request->file('file');
 
         $name      = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
+        dd($name);
 
-        // MediaLogic::UploadXnMedia($data);
+        MediaLogic::UploadXnMedia($file);
 
         return $this->success($file);
 

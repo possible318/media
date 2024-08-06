@@ -6,6 +6,7 @@ use App\Models\MediaJxd;
 use App\Models\MediaXn;
 use Qiniu\Auth;
 use Qiniu\Storage\BucketManager;
+use Qiniu\Storage\UploadManager;
 
 class MediaLogic
 {
@@ -96,20 +97,25 @@ class MediaLogic
         $auth          = new Auth($accessKey, $secretKey);
         $bucketManager = new BucketManager($auth);
 
-        $url = 'https://img.0x318.com/jxd/wb/0041jQI9gy1grw9wpqgbhj61o0280hdt02.jpg';
+        // $url = 'https://img.0x318.com/jxd/wb/0041jQI9gy1grw9wpqgbhj61o0280hdt02.jpg';
 
         // 上传到七牛后保存的文件名
-        $fileName = md5($url);
+        $fileName = md5($data);
 
         // 空间路径
         $key = 'xn/' . $fileName . '.jpg';
+
+        $token     = $auth->uploadToken($bucket);
+        $uploadMgr = new UploadManager();
+        // 上传字符串到存储
+        [$ret, $err] = $uploadMgr->put($token, $key, $data);
         // 指定抓取的文件保存名称
-        [$ret, $err] = $bucketManager->fetch($url, $bucket, $key);
+        // [$ret, $err] = $bucketManager->fetch($url, $bucket, $key);
         if ($err !== null)
         {
             return false;
         }
-        return $key;
+        return true;
     }
 
 

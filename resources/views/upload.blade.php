@@ -6,20 +6,73 @@
 
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">
+
+    <style>
+        /*a  upload */
+        .a-upload {
+            /* 扩展成方框 */
+            display: inline-block;
+            width: 120px;
+            height: 80px;
+            line-height: 80px;
+            position: relative;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            *display: inline;
+            *zoom: 1
+            background-color: #f5f5f5;
+            color: #666;
+            border: 1px dashed #ccc;
+            margin-right: 10px;
+        }
+
+        .a-upload span {
+            display: inline-block;
+            width: 120px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+        }
+
+        .a-upload input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+
+        .a-upload:hover {
+            color: #444;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none
+        }
+
+        .a-upload img {
+            width: 120px;
+            height: 80px;
+            /*  img 在 a 层级下面   */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
 </head>
 
 <body>
-<button type="button" class="layui-btn" id="ID-upload-demo-btn">
-    <i class="layui-icon layui-icon-upload"></i> 图片上传
-</button>
-
-<div style="width: 132px;">
-    <div class="layui-upload-list">
-        <img class="layui-upload-img" id="ID-upload-demo-img" style="width: 100%; height: 92px;">
-        <div id="ID-upload-demo-text"></div>
-    </div>
-    <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="filter-demo">
-        <div class="layui-progress-bar" lay-percent=""></div>
+<div class="layui-input-block">
+    <div class="layui-input-inline">
+        <a href="javascript:;" class="a-upload">
+            <input type="hidden" name="manage_id_front">
+            <span>上传</span>
+            <input type="file">
+            <img alt="">
+        </a>
     </div>
 </div>
 
@@ -30,49 +83,44 @@
 <script src="{{URL::asset('js/layui/layui.js')}}" charset="utf-8"></script>
 
 <script>
-
     layui.use(function () {
         var upload = layui.upload;
         var layer = layui.layer;
         var element = layui.element;
         var $ = layui.$;
         // 单图片上传
-        var uploadInst = upload.render({
-            elem: '#ID-upload-demo-btn',
-            url: '/media/upload', // 实际使用时改成您自己的上传接口即可。
-            before: function (obj) {
-                // 预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#ID-upload-demo-img').attr('src', result); // 图片链接（base64）
-                });
 
-                element.progress('filter-demo', '0%'); // 进度条复位
-                layer.msg('上传中', {icon: 16, time: 0});
-            },
-            done: function (res) {
-                // 若上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
+        $('.a-upload input').on('change', function () {
+            let pp = $(this);
+            let file = this.files[0];
+            let formData = new FormData();
+            let reader = new FileReader();
+
+            // 显示图片
+            let img = pp.siblings('img');
+            reader.onload = function (e) {
+                img.attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+            img.show();
+
+            formData.append('_csrf_token', '{{csrf_token()}}');
+            formData.append('file', file);
+            $.ajax({
+                url: '/media/upload',
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    // 上传成功
+                    if (res.code === 0) {
+                        pp.parent().find('input').val(res.data.key);
+                    } else {
+                        layer.msg(res.msg);
+                    }
                 }
-                // 上传成功的一些操作
-                // …
-                $('#ID-upload-demo-text').html(''); // 置空上传失败的状态
-            },
-            error: function () {
-                // 演示失败状态，并实现重传
-                var demoText = $('#ID-upload-demo-text');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            },
-            // 进度条
-            progress: function (n, elem, e) {
-                element.progress('filter-demo', n + '%'); // 可配合 layui 进度条元素使用
-                if (n == 100) {
-                    layer.msg('上传完毕', {icon: 1});
-                }
-            }
+            });
         });
     });
 
