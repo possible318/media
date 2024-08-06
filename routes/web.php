@@ -7,11 +7,11 @@ Route::get('/', function () { return view('welcome'); });
 // 接口
 Route::get('/photos', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);
 
-
+// 上传
 Route::get('/media/up_page', function () { return view('upload'); }); // 上传页面
 Route::post('/media/upload', [\App\Http\Controllers\MediaController::class, 'Upload']); // 上传
 
-// 尖尖
+// 尖尖xx
 Route::get('/media/jxd', [\App\Http\Controllers\MediaController::class, 'JxdMedia']);
 
 // 念念

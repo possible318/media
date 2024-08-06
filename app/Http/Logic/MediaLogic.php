@@ -87,7 +87,7 @@ class MediaLogic
     /**
      * 上传
      */
-    public static function UploadXnMedia($data)
+    public static function UploadMedia($path, $data)
     {
         $accessKey = env("QINIU_ACCESS_KEY");
         $secretKey = env("QINIU_SECRET_KEY");
@@ -103,7 +103,7 @@ class MediaLogic
         $fileName = md5($data);
 
         // 空间路径
-        $key = 'xn/' . $fileName . '.jpg';
+        $key = $path . '/' . $fileName . '.jpg';
 
         $token     = $auth->uploadToken($bucket);
         $uploadMgr = new UploadManager();
@@ -115,7 +115,7 @@ class MediaLogic
         {
             return false;
         }
-        return true;
+        return $key;
     }
 
 
