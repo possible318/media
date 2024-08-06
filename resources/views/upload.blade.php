@@ -7,16 +7,27 @@
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">
 
+    <style>
+        .upload-img {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
-    <i class="layui-icon layui-icon-upload"></i>
-    <div>点击上传，或将文件拖拽到此处</div>
-    <div class="layui-hide" id="ID-upload-demo-preview">
-        <hr>
-        <img src="" alt="上传成功后渲染" style="max-width: 100%">
+<div class="upload-img">
+    <div class="layui-upload-drag" style="display: block;" id="ID-upload-demo-drag">
+        <i class="layui-icon layui-icon-upload"></i>
+        <div>点击上传</div>
+        <div class="layui-hide" id="ID-upload-demo-preview">
+            <hr>
+            <img src="" alt="上传成功后渲染" style="max-width: 100%">
+        </div>
     </div>
 </div>
 
