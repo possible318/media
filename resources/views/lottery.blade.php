@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title></title>
+    <title>抽奖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">

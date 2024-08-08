@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Home</title>
+    <title>首页</title>
     <style>
         body {
             font-family: 'Kosugi Maru', sans-serif;
