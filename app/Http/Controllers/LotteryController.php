@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class LotteryController extends Controller
 {
-    public function lotteryPage(Request $request)
+    public function lotteryPage(Request $request): \Illuminate\View\View
     {
         $token = $request->session()->token();
         $cfg   = LotteryLogic::getLotteryConf($token);
@@ -41,7 +41,7 @@ class LotteryController extends Controller
         return view('lottery', ['conf' => $default]);
     }
 
-    public function prizeList(Request $request)
+    public function prizeList(Request $request): \Illuminate\Http\JsonResponse
     {
         $token = $request->session()->token();
         $cfg   = LotteryLogic::getLotteryConf($token);
@@ -66,7 +66,7 @@ class LotteryController extends Controller
         return $this->success(['token' => $token, 'prizeList' => $arr]);
     }
 
-    public function award(Request $request)
+    public function award(Request $request): \Illuminate\Http\JsonResponse
     {
         $token = $request->session()->token();
 
@@ -78,7 +78,7 @@ class LotteryController extends Controller
         return $this->success(['token' => $token, 'award' => $id]);
     }
 
-    public function saveCfg(Request $request)
+    public function saveConfig(Request $request): \Illuminate\Foundation\Application|\Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
     {
         // 获取csrf token
         $token = $request->session()->token();

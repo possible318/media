@@ -28,4 +28,4 @@ Route::get('/lottery', [App\Http\Controllers\LotteryController::class, 'lotteryP
 Route::get('/lottery/prizeList', [App\Http\Controllers\LotteryController::class, 'prizeList']); // 奖品列表
 Route::get('/lottery/award', [App\Http\Controllers\LotteryController::class, 'award']); // 抽奖
 
-Route::post('/lottery/saveConfig', [App\Http\Controllers\LotteryController::class, 'saveCfg']); // 保存配置
+Route::post('/lottery/saveConfig', [App\Http\Controllers\LotteryController::class, 'saveConfig']); // 保存配置
