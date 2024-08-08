@@ -61,7 +61,7 @@
                     @foreach($conf as $item)
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">奖项-{{$item['id']}}</label>
+                                <label class="layui-form-label">奖项{{$item['id']}}</label>
                                 <div class="layui-input-block">
                                     <input type="text" name="item_{{$item['id']}}" autocomplete="off" class="layui-input" value="{{$item['name']}}">
                                 </div>
