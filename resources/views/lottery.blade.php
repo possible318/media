@@ -1,8 +1,9 @@
 <html>
 <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-
+    <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">
     <style>
         #big-cube {
             width: 350px;
@@ -39,15 +40,72 @@
             background: #fbd4aa;
         }
 
+        /*设置input num 宽度*/
+        input[type="number"] {
+            width: 50px;
+        }
     </style>
 </head>
 <body>
-<div id="big-cube"></div>
+
+<div class="layui-fluid">
+    <div class="layui-tab" lay-filter="test-hash">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="conf">配置</li>
+            <li lay-id="run">抽奖</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form layui-form-pane" action="/lottery/saveConfig" method="post">
+                    @csrf
+                    @foreach($conf as $item)
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">奖项-{{$item['id']}}</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="item_{{$item['id']}}" autocomplete="off" class="layui-input" value="{{$item['name']}}">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">数量</label>
+                                <div class="layui-input-block">
+                                    <input type="number" name="num_{{$item['id']}}" autocomplete="off" class="layui-input" value="{{$item['num']}}">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="layui-form-item">
+                        <input class="layui-btn layui-btn-sm" type="submit" value="确认">
+                    </div>
+                </form>
+            </div>
+            <div class="layui-tab-item">
+                <div id="big-cube"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
 
 <script src="{{URL::asset('js/jquery-3.7.1.min.js')}}" charset="utf-8"></script>
+<script src="{{URL::asset('js/layui/layui.js')}}" charset="utf-8"></script>
 <script>
+    var element = layui.element;
+
+    // hash 地址定位
+    var hashName = 'id'; // hash 名称
+    var layid = location.hash.replace(new RegExp('^#' + hashName + '='), ''); // 获取 lay-id 值
+
+    // 初始切换
+    element.tabChange('test-hash', layid);
+    // 切换事件
+    element.on('tab(test-hash)', function (obj) {
+        location.hash = hashName + '=' + this.getAttribute('lay-id');
+    });
+
+
     //预设奖品
     let setTime;
     // 转盘跑马灯 顺时针 坐标
@@ -57,18 +115,18 @@
 
     function init() {
         // 服务端获取奖品列表
-        let prizeList = [
-            {id: 0, name: "0",},
-            {id: 1, name: "1",},
-            {id: 2, name: "2",},
-            {id: 3, name: "3",},
-            {id: 4, name: "抽奖", click: 1},
-            {id: 5, name: "5",},
-            {id: 6, name: "6",},
-            {id: 7, name: "7",},
-            {id: 8, name: "8",},
-        ];
-
+        let prizeList = [];
+        // 获取 奖品列表
+        $.ajax({
+            url: '/lottery/prizeList',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                if (res.code === 0) {
+                    prizeList = res.data.prizeList;
+                }
+            }
+        });
         createPrizeItem(prizeList);
     }
 
@@ -101,7 +159,20 @@
 
     function getLotteryAward() {
         // 模拟中奖信息ID
-        let mod_lottery_id = 7;
+        let mod_lottery_id = 0;
+
+        $.ajax({
+            url: '/lottery/award?',
+            type: 'get',
+            async: false,
+            success: function (res) {
+                console.log(res.data.award)
+                if (res.code === 0) {
+                    mod_lottery_id = res.data.award;
+                }
+            }
+        });
+
         // 获取ID在转盘上的位置
         for (let i = 0; i < cycle.length; i++) {
             if (cycle[i] === mod_lottery_id) {

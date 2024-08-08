@@ -24,7 +24,8 @@ Route::get('/wechat/code2session', [App\Http\Controllers\WechatController::class
 Route::get('/color', function () { return view('color'); });
 
 // 抽奖
-Route::get('/lottery', function () { return view('lottery'); });
-Route::get('/lottery/config', [App\Http\Controllers\LotteryController::class, 'config']);
-Route::post('/lottery/saveCfg', [App\Http\Controllers\LotteryController::class, 'saveCfg']);
-Route::get('/lottery/award', [App\Http\Controllers\LotteryController::class, 'award']);
+Route::get('/lottery', [App\Http\Controllers\LotteryController::class, 'lotteryPage']); // 抽奖页面
+Route::get('/lottery/prizeList', [App\Http\Controllers\LotteryController::class, 'prizeList']); // 奖品列表
+Route::get('/lottery/award', [App\Http\Controllers\LotteryController::class, 'award']); // 抽奖
+
+Route::post('/lottery/saveConfig', [App\Http\Controllers\LotteryController::class, 'saveCfg']); // 保存配置

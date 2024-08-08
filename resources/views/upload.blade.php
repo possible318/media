@@ -2,7 +2,7 @@
 <head>
     <title>上传</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
     <link rel="stylesheet" href="{{URL::asset('js/layui/css/layui.css')}}" media="all">

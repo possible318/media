@@ -7,7 +7,7 @@ use RedisException;
 
 class LotteryLogic
 {
-    const LOTTERY_CONF_KEY = 'lottery_config_';
+    const LOTTERY_CONF_KEY = 'lottery_prize_list_';
     const LOTTERY_POOL_KEY = 'lottery_pool_';
 
     /**
@@ -51,11 +51,12 @@ class LotteryLogic
         redis()->del($poolKey);
         // 构建奖池
         $poolList = [];
-        foreach ($conf as $pid => $num)
+        foreach ($conf as $k => $item)
         {
+            $num = $item['num'];
             for ($m = 0; $m < $num; $m++)
             {
-                $poolList[] = $pid;
+                $poolList[] = 'item_' . $k;
             }
         }
         // 打乱顺序
