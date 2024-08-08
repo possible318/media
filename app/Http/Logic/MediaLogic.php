@@ -115,6 +115,17 @@ class MediaLogic
         {
             return false;
         }
+        // 上传成功 写入数据库
+        $obj = new MediaXn();
+
+        $obj->pid    = $fileName;
+        $obj->src    = $key;
+        $obj->status = 0;
+        $obj->add_tm = time();
+        $obj->upd_tm = time();
+        $obj->del_tm = 0;
+        $obj->save();
+
         return $key;
     }
 

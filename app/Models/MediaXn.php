@@ -24,10 +24,13 @@ class MediaXn extends Model
 
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     public static function getMediaList($page, $limit = 10): array
     {
         $count = self::count();
-        if ($count == 0) {
+        if ($count == 0)
+        {
             return [0, []];
         }
         $res = self::limit($limit)
