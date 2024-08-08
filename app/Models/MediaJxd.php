@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MediaJxd extends Model
 {
-    public $table = 'media';
+    public $table = 'media_jxd';
 
     protected $primaryKey = 'id';
 
