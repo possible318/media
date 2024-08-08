@@ -11,7 +11,7 @@ class MediaController extends Controller
     public function JxdMedia(Request $request): JsonResponse
     {
         $page  = $request->get('page', 1);
-        $limit = $request->get('limit', 10);
+        $limit = $request->get('limit', 5);
         $force = $request->get('force', 0);
 
         $list = MediaLogic::GetJxdMedia($page, $limit, $force);
@@ -22,7 +22,7 @@ class MediaController extends Controller
     public function XnMedia(Request $request): JsonResponse
     {
         $page  = $request->get('page', 1);
-        $limit = $request->get('limit', 10);
+        $limit = $request->get('limit', 5);
 
         $list = MediaLogic::GetXnMedia($page, $limit);
 
