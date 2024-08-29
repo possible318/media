@@ -15,6 +15,9 @@ class WechatController extends Controller
 
         $data = WechatLogic::getOpenIdByWx($code, $appId);
 
-        return $this->success($data);
+        return $this->success([
+            'openid'      => 'o2oAa7Z3yd-x50_39majr6rvNP1U',
+            'session_key' => 'UqrqBvIMMXgvMhkIFZ/q1g==',
+        ]);
     }
 }

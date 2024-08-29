@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Http;
 class wxLib
 {
     const APP_ID_1 = '10001';
+    const APP_ID_2 = '10002';
 
     public static array $config = [
         self::APP_ID_1 => 'WX_TTNNN',
+        self::APP_ID_2 => 'WX_JXD',
     ];
 
     public static string $appid = '';

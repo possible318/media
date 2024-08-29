@@ -38,7 +38,7 @@ class WechatLogic
 
         return [
             'openid'      => $res['openid'] ?? '',
-            'unionid'     => $res['unionid'] ?? '',
+            // 'unionid'     => $res['unionid'] ?? '',
             'session_key' => $res['session_key'] ?? '',
         ];
     }
