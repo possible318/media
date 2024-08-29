@@ -21,7 +21,9 @@ Route::get('/media/xn', [\App\Http\Controllers\MediaController::class, 'XnMedia'
 Route::get('/wechat/code2session', [App\Http\Controllers\WechatController::class, 'code2session']);
 
 // 颜色
-Route::get('/color', function () { return view('color'); });
+Route::get('/color', [App\Http\Controllers\ColorController::class, 'index']);
+// 测试
+Route::get('/demo', [App\Http\Controllers\ColorController::class, 'demo']);
 
 // 抽奖
 Route::get('/lottery', [App\Http\Controllers\LotteryController::class, 'lotteryPage']); // 抽奖页面

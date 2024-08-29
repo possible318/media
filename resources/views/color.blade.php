@@ -7,12 +7,7 @@
     <style>
         @font-face {
             font-family: 'lixukexingshu1b969ad7dc1c3e5';
-            src: url('css/lixunkejingdianxingshu.eot');
-            src: url('css/lixunkejingdianxingshu.eot?#font-spider') format('embedded-opentype'),
-            url('css/lixunkejingdianxingshu.woff2') format('woff2'),
-                /* url('css/lixunkejingdianxingshu.woff') format('woff'),
-                 url('css/lixunkejingdianxingshu.ttf') format('truetype'), */
-            url('css/lixunkejingdianxingshu.svg') format('svg');
+            src: url('css/lixunkejingdianxingshu.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
@@ -28,7 +23,7 @@
     </nav>
     <article id="data">
         <h2>
-            <span id="name">色</span>
+            <span id="name">颜色</span>
             <span id="pinyin">YANSE</span>
         </h2>
         <div id="color-value">
@@ -140,7 +135,7 @@
     };
 
     const hashRenderColor = function () {
-        if (location.hash != '' && location.hash.indexof('google') === -1) {
+        if (location.hash != '' && location.hash.indexOf('google') === -1) {
             const colorPinyin = location.hash.substring(1),
                 hashColor = colorsArray.filter(function (color) {
                     return color.pinyin === colorPinyin;
